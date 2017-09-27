@@ -8,7 +8,7 @@ library(tidyverse)
 #inilization
 
 
-#??FPO??ȡר??˵?????ĺ???
+#new comment
 extractPatent <- function(patent_number){
   if (nchar(patent_number) == 11){
     baseurl <- "http://www.freepatentsonline.com/"
