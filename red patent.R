@@ -1,7 +1,7 @@
-setwd("D:/Stanford CNN course/text mining in R/red 5//")
+setwd("D:/Stanford CNN course/text mining in R/synergy/")
 
 #loading package
-load <- c("NLP","tm","lsa","XML")
+load <- c("NLP","tm","lsa","XML", "ggthemes")
 lapply(load, library, character.only = TRUE)
 library(tidyverse)
 
@@ -86,16 +86,10 @@ clean_corpus <- function(corpus){
   return(corpus)
 }
 
-p_corpus <- VCorpus(DirSource("D:/Stanford CNN course/text mining in R/RED/"), readerControl = list(language="lat")) 
+p_corpus <- VCorpus(DirSource("D:/Stanford CNN course/text mining in R/synergy/"), readerControl = list(language="lat")) 
 p_tdm <- p_corpus %>% clean_corpus() %>% 
-  TermDocumentMatrix() 
-
-mostterm <- findMostFreqTerms(p_tdm,10)
-
-#termindex <- findFreqTerms(p_tdm, 100) 
-
-#p_tdm <- as.matrix(p_tdm[termindex,])
-
+  TermDocumentMatrix() %>% 
+  as.matrix()
 
 #calculate local weighting
 LW <- log(1 + p_tdm)
@@ -120,7 +114,7 @@ docVectors <- mylsa$dk*mylsa$sk
 docsim <- cosine(t(docVectors))
 
 #visualization
-simdis <- docsim["8174560.txt",]
+simdis <- docsim["8200375.txt",]
 simdis <- sort(simdis, decreasing = TRUE)
 patent_names <- names(simdis)
 simdis_df <-  data.frame(simdis)
@@ -129,54 +123,14 @@ simdis_df <- subset(simdis_df, simdis_df$simdis>=0.01)
 simdis_df <- simdis_df[order(simdis_df$simdis),]
 simdis_df$patent_names <- factor(simdis_df$patent_names, levels = simdis_df$patent_names)
 
-data("mtcars")  # load data
-mtcars$`car name` <- rownames(mtcars)  # create new column for car names
-mtcars$mpg_z <- round((mtcars$mpg - mean(mtcars$mpg))/sd(mtcars$mpg), 2)  # compute normalized mpg
-mtcars$mpg_type <- ifelse(mtcars$mpg_z < 0, "below", "above")  # above / below avg flag
-mtcars <- mtcars[order(mtcars$mpg_z), ]  # sort
-mtcars$`car name` <- factor(mtcars$`car name`, levels = mtcars$`car name`)  # convert to factor to retain sorted order in plot.
-
 ggplot(simdis_df, aes(x=patent_names, y=simdis, label=simdis)) + 
   geom_bar(stat='identity', width=.5, fill="#00ba38")  +
   scale_fill_manual(name="Mileage", 
                     labels = c("Above Average", "Below Average"), 
                     values = c("above"="#00ba38", "below"="#f8766d")) + 
-  labs(subtitle="Normalised mileage from 'mtcars'", 
-       title= "Diverging Bars") + 
-  coord_flip()
-
-ggplot(simdis_df, aes(x=patent_names, y=round(simdis, 2), label=round(simdis,2))) + 
-  geom_point(stat='identity',size=6)  +
-  scale_color_manual(name="Mileage", 
-                     labels = c("Above Average", "Below Average"), 
-                     values = c("above"="#00ba38", "below"="#f8766d")) + 
-  geom_text(color="white", size=2) +
-  labs(title="Diverging Dot Plot", 
-       subtitle="Normalized mileage from 'mtcars': Dotplot") + 
-  ylim(-2.5, 2.5) +
-  coord_flip()
-
-
-ggplot(simdis_df, aes(x=patent_names, y=simdis, label=round(simdis, 2))) + 
-  geom_point(stat='identity', aes(color="#00ba38"), size=6)  +
-  geom_segment(aes(y = 0, 
-                   x = patent_names, 
-                   yend = simdis, 
-                   xend = patent_names), 
-               color = "black") +
-  geom_text(color="white", size=2) +
-  labs(title="Diverging Lollipop Chart", 
-       subtitle="Normalized mileage from 'mtcars': Lollipop") + 
-  ylim(-2.5, 2.5) +
-  coord_flip()
-
-ggplot(simdis_df, aes(x=patent_names, y=simdis, label=round(simdis, 2))) + 
-  geom_point(stat='identity', size=6)  +
-  scale_color_manual(name="Mileage", 
-                     labels = c("Above Average", "Below Average"), 
-                     values = c("above"="#00ba38", "below"="#f8766d")) + 
-  geom_text(color="white", size=2) +
-  labs(title="Diverging Dot Plot", 
-       subtitle="Normalized mileage from 'mtcars': Dotplot") + 
-  ylim(-2.5, 2.5) +
+  labs(title= "Similarity of US8174560 and its references") + 
+  xlab("Publication Number")+
+  ylab("Similariy")+
+theme(axis.text.y = element_text(size = 10,face = "bold"),
+        axis.text.x = element_text(size = 10,face = "bold"))+
   coord_flip()
