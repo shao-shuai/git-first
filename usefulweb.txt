@@ -3,3 +3,4 @@ http://r-pkgs.had.co.nz/git.html
 https://www.r-bloggers.com/rstudio-and-github/
 http://happygitwithr.com/
 https://zh.gluon.ai/why.html
+http://karpathy.github.io/2015/05/21/rnn-effectiveness/ -- Andrej Karpathy blog
