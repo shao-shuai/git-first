@@ -1,0 +1,5 @@
+RNN
+https://github.com/llSourcell/wiki_generator_live - wiki generator live
+https://einstein.ai/research/the-wikitext-long-term-dependency-language-modeling-dataset - dataset
+https://github.com/llSourcell/How_to_make_a_text_summarizer - text summarizer
+https://machinelearningmastery.com/text-generation-lstm-recurrent-neural-networks-python-keras/ - text generation with LSTM
