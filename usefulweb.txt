@@ -6,3 +6,4 @@ https://zh.gluon.ai/why.html
 http://karpathy.github.io/2015/05/21/rnn-effectiveness/ -- Andrej Karpathy blog
 http://colah.github.io/posts/2015-08-Understanding-LSTMs/ --understanding LSTM Networks
 http://colah.github.io/about.html -- Christopher Olah's github page
+http://varianceexplained.org/posts/ - David Robinson's blog - R
