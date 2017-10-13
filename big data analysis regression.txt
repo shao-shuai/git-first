@@ -1,0 +1,5 @@
+https://www.youtube.com/watch?v=fHx8tECyid8&list=PLt0SBi1p7xrSKrvSc6QnqJUadSxDi465Y - simple linear regression 1
+https://www.youtube.com/watch?v=j9qxrEdiJ8M&list=PLt0SBi1p7xrSKrvSc6QnqJUadSxDi465Y&index=2 - simple linear regression 2
+https://www.youtube.com/watch?v=724mRY17ScM&list=PLt0SBi1p7xrSKrvSc6QnqJUadSxDi465Y&index=3 - simple linear regression with r
+https://www.youtube.com/watch?v=I4kwnXw7OLI&list=PLt0SBi1p7xrSKrvSc6QnqJUadSxDi465Y&index=4 - residuals vd fitted plot
+https://www.youtube.com/watch?v=DtxrnN0EsAU&index=5&list=PLt0SBi1p7xrSKrvSc6QnqJUadSxDi465Y - qq plot
